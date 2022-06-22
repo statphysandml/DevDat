@@ -1,9 +1,5 @@
-//
-// Created by lukas on 31.07.19.
-//
-
-#ifndef PROGRAM_DEV_DAT_HPP
-#define PROGRAM_DEV_DAT_HPP
+#ifndef DEVDAT_DEVDAT_HPP
+#define DEVDAT_DEVDAT_HPP
 
 #include <devdat/header.hpp>
 #include <devdat/util/thrust_functors.hpp>
@@ -399,4 +395,4 @@ namespace devdat {
     typedef DevDat<dev_vec_bool, dev_iterator_bool, const_dev_iterator_bool> DevDatBool;
 }
 
-#endif //PROGRAM_DEV_DAT_HPP
+#endif //DEVDAT_DEVDAT_HPP

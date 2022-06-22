@@ -1,5 +1,5 @@
-#ifndef PROGRAM_JSON_CONVERSION_HPP
-#define PROGRAM_JSON_CONVERSION_HPP
+#ifndef DEVDAT_JSON_CONVERSION_HPP
+#define DEVDAT_JSON_CONVERSION_HPP
 
 #include <vector>
 #include <algorithm>
@@ -42,4 +42,4 @@ namespace devdat {
     }
 }
 
-#endif //PROGRAM_JSON_CONVERSION_HPP
+#endif //DEVDAT_JSON_CONVERSION_HPP

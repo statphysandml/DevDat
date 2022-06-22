@@ -1,9 +1,5 @@
-//
-// Created by lukas on 14.03.19.
-//
-
-#ifndef PROJECT_THRUST_FUNCTORS_HPP
-#define PROJECT_THRUST_FUNCTORS_HPP
+#ifndef DEVDAT_THRUST_FUNCTORS_HPP
+#define DEVDAT_THRUST_FUNCTORS_HPP
 
 #include <thrust/device_vector.h>
 #include <thrust/reduce.h>
@@ -230,4 +226,4 @@ struct linear_index_to_row_index : public thrust::unary_function<T,T>
 };
 
 
-#endif //PROJECT_THRUST_FUNCTORS_HPP
+#endif //DEVDAT_THRUST_FUNCTORS_HPP

@@ -1,5 +1,5 @@
-#ifndef PROJECT_RANDOM_HPP
-#define PROJECT_RANDOM_HPP
+#ifndef EXAMPLES_RANDOM_HPP
+#define EXAMPLES_RANDOM_HPP
 
 #include <random>
 #include <thrust/random.h>
@@ -101,4 +101,4 @@ void initialize_helper(std::string starting_mode, dev_vec &lattice, thrust::devi
     // print_range("Initialized Lattice", lattice.begin(), lattice.end());
 } */
 
-#endif //PROJECT_RANDOM_HPP
+#endif //EXAMPLES_RANDOM_HPP
