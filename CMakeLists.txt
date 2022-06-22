@@ -42,8 +42,10 @@ add_subdirectory(examples)
 # compile the tests
 include(CTest)
 if(BUILD_TESTING)
-  add_subdirectory(ext/Catch2)
-  include(./ext/Catch2/contrib/Catch.cmake)
+  if(NOT TARGET Catch2)
+    add_subdirectory(ext/Catch2)
+    include(./ext/Catch2/contrib/Catch.cmake)
+  endif()
   add_subdirectory(tests)
 endif()
 
