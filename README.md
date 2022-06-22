@@ -1,4 +1,4 @@
-# Welcome to DDevDat
+# Welcome to DevDat
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![GitHub Workflow Status](https://img.shields.io/github/workflow/status/statphysandml/DevDat/CI)](https://github.com/statphysandml/DevDat/actions?query=workflow%3ACI)
@@ -7,14 +7,14 @@
 
 # Prerequisites
 
-Building DDevDat requires the following software installed:
+Building DevDat requires the following software installed:
 
 * A C++17-compliant compiler
-* CMake `>= 3.9`
+* CMake `>= 3.15`
 
-# Building DDevDat
+# Building DevDat
 
-The following sequence of commands builds DDevDat.
+The following sequence of commands builds DevDat.
 It assumes that your current working directory is the top-level directory
 of the freshly cloned repository:
 
@@ -32,10 +32,10 @@ which can be set by adding `-D<var>={ON, OFF}` to the `cmake` call:
 
 
 
-# Testing DDevDat
+# Testing DevDat
 
 When built according to the above explanation (with `-DBUILD_TESTING=ON`),
-the C++ test suite of `DDevDat` can be run using
+the C++ test suite of `DevDat` can be run using
 `ctest` from the build directory:
 
 ```
@@ -46,4 +46,4 @@ ctest
 
 # Documentation
 
-DDevDat *should* provide a documentation.
+...will follow...
