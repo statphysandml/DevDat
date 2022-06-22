@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.9)
+cmake_minimum_required(VERSION 3.15)
 
 # Silence warnings about empty CUDA_ARCHITECTURES properties on example targets:
 if(CMAKE_VERSION VERSION_GREATER_EQUAL 3.18)
@@ -33,6 +33,7 @@ add_library(devdat INTERFACE)
 target_include_directories(devdat INTERFACE
   $<BUILD_INTERFACE:${CMAKE_SOURCE_DIR}/include/>
   $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>
+  $<BUILD_INTERFACE:${json_SOURCE_DIR}/include/>
 )
 
 # compile the examples
