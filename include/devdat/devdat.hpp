@@ -369,11 +369,6 @@ namespace devdat {
             s.pop_back();
             return s;
         }
-
-        void write_to_file(std::string rel_dir, std::string filename)
-        {
-            write_devdat_to_file(*this, rel_dir, filename);
-        }
             
     private:
         size_t dim_;
