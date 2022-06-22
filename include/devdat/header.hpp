@@ -42,7 +42,7 @@ typedef thrust::device_vector<cudaT>::const_iterator const_dev_iterator;
 typedef thrust::device_vector<int>::const_iterator const_dev_iterator_int;
 typedef thrust::device_vector<bool>::const_iterator const_dev_iterator_bool;
 
-typedef thrust::device_vector< dev_iterator_int* > dev_iter_vec_int;
+typedef thrust::device_vector<dev_iterator_int*> dev_iter_vec_int;
 
 // #endif
 

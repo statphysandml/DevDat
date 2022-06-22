@@ -129,20 +129,6 @@ OutputIterator expand(InputIterator1 first1,
     difference_type input_size  = thrust::distance(first1, last1);
     difference_type output_size = thrust::reduce(first1, last1);
 
-#ifndef GPU
-    // scan the counts to obtain output offsets for each input element
-    thrust::host_vector<difference_type> output_offsets(input_size, 0);
-    thrust::exclusive_scan(first1, last1, output_offsets.begin());
-
-    // scatter the nonzero counts into their corresponding output positions
-    thrust::host_vector<difference_type> output_indices(output_size, 0);
-    thrust::scatter_if
-            (thrust::counting_iterator<difference_type>(0),
-             thrust::counting_iterator<difference_type>(input_size),
-             output_offsets.begin(),
-             first1,
-             output_indices.begin());
-#else
     // scan the counts to obtain output offsets for each input element
     thrust::device_vector<difference_type> output_offsets(input_size, 0);
     thrust::exclusive_scan(first1, last1, output_offsets.begin());
@@ -155,7 +141,6 @@ OutputIterator expand(InputIterator1 first1,
              output_offsets.begin(),
              first1,
              output_indices.begin());
-#endif
 
     // compute max-scan over the output indices, filling in the holes
     thrust::inclusive_scan
