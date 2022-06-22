@@ -1,7 +1,12 @@
 cmake_minimum_required(VERSION 3.9)
 
+# Silence warnings about empty CUDA_ARCHITECTURES properties on example targets:
+if(CMAKE_VERSION VERSION_GREATER_EQUAL 3.18)
+  cmake_policy(SET CMP0104 OLD)
+endif()
+
 # Set a name and a version number for your project:
-project(devdat VERSION 0.0.1 LANGUAGES CXX)
+project(devdat VERSION 0.0.1 LANGUAGES CXX CUDA)
 
 # Initialize some default paths
 include(GNUInstallDirs)
@@ -10,7 +15,17 @@ include(GNUInstallDirs)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
+set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 
+# Add nlohmann json
+include(FetchContent)
+
+FetchContent_Declare(json
+  GIT_REPOSITORY https://github.com/ArthurSonzogni/nlohmann_json_cmake_fetchcontent
+  GIT_PROGRESS TRUE
+  GIT_SHALLOW TRUE
+  GIT_TAG v3.0.0)
+FetchContent_MakeAvailable(json)
 
 # Compilation options
 # Add an interface target for our header-only library
@@ -20,8 +35,8 @@ target_include_directories(devdat INTERFACE
   $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>
 )
 
-# compile the application
-add_subdirectory(app)
+# compile the examples
+add_subdirectory(examples)
 
 # compile the tests
 include(CTest)
@@ -30,7 +45,6 @@ if(BUILD_TESTING)
   include(./ext/Catch2/contrib/Catch.cmake)
   add_subdirectory(tests)
 endif()
-
 
 
 # Add an alias target for use if this project is included as a subproject in another project
@@ -55,6 +69,9 @@ install(
   DIRECTORY ${CMAKE_CURRENT_LIST_DIR}/include/
   DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}
 )
+
+install(FILES ${json_SOURCE_DIR}/include/nlohmann/json.hpp
+        DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/nlohmann/)
 
 # This prints a summary of found dependencies
 include(FeatureSummary)
