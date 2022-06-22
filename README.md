@@ -42,8 +42,28 @@ the C++ test suite of `DevDat` can be run using
 cd build
 ctest
 ```
+# Building the example
+
+The example directory demonstrates how the library can be integrated into a cmake project:
+
+```
+cd examples
+mkdir build
+cd build
+cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_PREFIX_PATH=~/DevDat/install ..   
+cmake --build .
+```
+
+Note that we have assumed here that the library was built beforehand locally by running the following commands in the top-level directory of the repository:
+
+```
+mkdir build
+cd build
+cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=./../install ..    
+make install -j9
+```
 
 
 # Documentation
 
-...will follow...
+ToDo

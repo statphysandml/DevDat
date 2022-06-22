@@ -36,9 +36,6 @@ target_include_directories(devdat INTERFACE
   $<BUILD_INTERFACE:${json_SOURCE_DIR}/include/>
 )
 
-# compile the examples
-add_subdirectory(examples)
-
 # compile the tests
 include(CTest)
 if(BUILD_TESTING)

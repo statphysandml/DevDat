@@ -1,4 +1,4 @@
-add_executable(devdat_tests tests.cpp devdat_t.cpp)
+add_executable(devdat_tests tests.cpp devdat_t.cu)
 target_link_libraries(devdat_tests PUBLIC devdat Catch2::Catch2)
 
 target_include_directories(devdat_tests PUBLIC
