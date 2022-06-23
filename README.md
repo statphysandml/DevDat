@@ -11,6 +11,7 @@ Building DevDat requires the following software installed:
 
 * A C++17-compliant compiler
 * CMake `>= 3.15`
+* Cuda `>=10.1`
 
 # Building DevDat
 
@@ -29,8 +30,6 @@ The build process can be customized with the following CMake variables,
 which can be set by adding `-D<var>={ON, OFF}` to the `cmake` call:
 
 * `BUILD_TESTING`: Enable building of the test suite (default: `ON`)
-
-
 
 # Testing DevDat
 
