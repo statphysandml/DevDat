@@ -12,13 +12,13 @@ add_executable(devdat_tests tests.cpp devdat_t.cu)
 target_include_directories(devdat_tests
     PRIVATE
         ${CMAKE_CUDA_TOOLKIT_INCLUDE_DIRECTORIES}
-        ${json_SOURCE_DIR}/include
 )
 
 target_link_libraries(devdat_tests
     PRIVATE
     devdat
     Catch2::Catch2
+    nlohmann_json::nlohmann_json
 )
 
 include(${catch2_SOURCE_DIR}/contrib/Catch.cmake)
