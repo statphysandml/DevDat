@@ -5,12 +5,22 @@ include(CMakeFindDependencyMacro)
 # Find or load CUDA toolkit (required for Thrust)
 find_dependency(CUDAToolkit REQUIRED)
 
-# Handle nlohmann_json dependency if using system version
+# Handle nlohmann_json dependency
 if(@DEVDAT_USE_SYSTEM_JSON@)
-    find_dependency(nlohmann_json REQUIRED)
+    # Check if we used a custom include path provided by superbuild
+    if(NOT TARGET json_interface)
+        # We used the system package during build
+        find_dependency(nlohmann_json REQUIRED)
+    endif()
+    # Otherwise, json_interface target is already defined in the Targets file
 endif()
 
 # Include the exported targets
 include("${CMAKE_CURRENT_LIST_DIR}/@PROJECT_NAME@Targets.cmake")
+
+# Provide compatibility with older FindPackage behavior
+set(devdat_FOUND TRUE)
+set(devdat_VERSION @PROJECT_VERSION@)
+set(devdat_INCLUDE_DIRS "${CMAKE_CURRENT_LIST_DIR}/../../../include")
 
 message(STATUS "Found @PROJECT_NAME@ @PROJECT_VERSION@")
