@@ -114,7 +114,7 @@ include(CMakePackageConfigHelpers)
 
 # Create a config file that handles dependencies
 configure_file(
-    ${CMAKE_CURRENT_SOURCE_DIR}/cmake/DevdatConfig.cmake.in
+    ${CMAKE_CURRENT_SOURCE_DIR}/cmake/devdatConfig.cmake.in
     ${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}Config.cmake
     @ONLY
 )

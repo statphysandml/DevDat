@@ -18,7 +18,6 @@ target_link_libraries(devdat_tests
     PRIVATE
     devdat
     Catch2::Catch2
-    nlohmann_json::nlohmann_json
 )
 
 include(${catch2_SOURCE_DIR}/contrib/Catch.cmake)

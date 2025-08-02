@@ -22,8 +22,3 @@ add_executable(devdat_examples
 
 # Link with devdat - all necessary include paths should come from this
 target_link_libraries(devdat_examples PRIVATE devdat::devdat)
-
-# If using CUDA, you might need to specify compute capability
-set_target_properties(devdat_examples PROPERTIES
-    CUDA_ARCHITECTURES "75"  # Adjust based on your GPU
-)
