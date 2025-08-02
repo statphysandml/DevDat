@@ -59,11 +59,6 @@ install(
   DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}
 )
 
-# install(
-#   FILES ${json_SOURCE_DIR}/include/nlohmann/json.hpp
-#   DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/nlohmann/
-# )
-
 # Feature summary
 include(FeatureSummary)
 feature_summary(WHAT ALL)
