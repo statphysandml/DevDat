@@ -1,29 +1,29 @@
 cmake_minimum_required(VERSION 3.18)
+project(devdat_examples LANGUAGES CXX CUDA)
 
-project(Example VERSION 0.0.1 LANGUAGES CXX CUDA)
-
+# Set C++ and CUDA standards
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
-set(CMAKE_POSITION_INDEPENDENT_CODE ON)
+set(CMAKE_CUDA_STANDARD 14)
+set(CMAKE_CUDA_STANDARD_REQUIRED ON)
 
-# Optionally set CUDA architectures (uncomment and set as needed)
-# set(CMAKE_CUDA_ARCHITECTURES 60 70 75 80 86)
+# Find the devdat package
+find_package(devdat REQUIRED)
 
-include(GNUInstallDirs)
+# Add CUDA directories
+include_directories(include)
 
-find_package(devdat CONFIG REQUIRED)
-
+# Add the executable
 add_executable(devdat_examples
+    main.cpp
     src/devdat_t.cu
     src/random.cu
-    main.cpp
 )
 
+# Link with devdat - all necessary include paths should come from this
 target_link_libraries(devdat_examples PRIVATE devdat::devdat)
 
-target_include_directories(devdat_examples PRIVATE
-    ${CMAKE_CUDA_TOOLKIT_INCLUDE_DIRECTORIES}
+# If using CUDA, you might need to specify compute capability
+set_target_properties(devdat_examples PROPERTIES
+    CUDA_ARCHITECTURES "75"  # Adjust based on your GPU
 )
-
-include(FeatureSummary)
-feature_summary(WHAT ALL)

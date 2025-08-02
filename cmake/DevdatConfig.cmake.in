@@ -1,0 +1,16 @@
+@PACKAGE_INIT@
+
+include(CMakeFindDependencyMacro)
+
+# Find or load CUDA toolkit (required for Thrust)
+find_dependency(CUDAToolkit REQUIRED)
+
+# Handle nlohmann_json dependency if using system version
+if(@DEVDAT_USE_SYSTEM_JSON@)
+    find_dependency(nlohmann_json REQUIRED)
+endif()
+
+# Include the exported targets
+include("${CMAKE_CURRENT_LIST_DIR}/@PROJECT_NAME@Targets.cmake")
+
+message(STATUS "Found @PROJECT_NAME@ @PROJECT_VERSION@")
