@@ -1,10 +1,25 @@
-add_executable(devdat_tests tests.cpp devdat_t.cu)
-target_link_libraries(devdat_tests PUBLIC devdat Catch2::Catch2)
+include(FetchContent)
 
-target_include_directories(devdat_tests PUBLIC
-    $<BUILD_INTERFACE:${CMAKE_CUDA_TOOLKIT_INCLUDE_DIRECTORIES}>
-    $<BUILD_INTERFACE:${json_SOURCE_DIR}/include/>
+FetchContent_Declare(
+    Catch2
+    GIT_REPOSITORY https://github.com/catchorg/Catch2.git
+    GIT_TAG        v2.13.8
+)
+FetchContent_MakeAvailable(Catch2)
+
+add_executable(devdat_tests tests.cpp devdat_t.cu)
+
+target_include_directories(devdat_tests
+    PRIVATE
+        ${CMAKE_CUDA_TOOLKIT_INCLUDE_DIRECTORIES}
+        ${json_SOURCE_DIR}/include
 )
 
-# allow user to run tests with `make test` or `ctest`
+target_link_libraries(devdat_tests
+    PRIVATE
+    devdat
+    Catch2::Catch2
+)
+
+include(${catch2_SOURCE_DIR}/contrib/Catch.cmake)
 catch_discover_tests(devdat_tests)

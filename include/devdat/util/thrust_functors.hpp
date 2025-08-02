@@ -21,7 +21,7 @@ public:
 
     typedef typename thrust::iterator_difference<Iterator>::type difference_type;
 
-    struct repeat_functor : public thrust::unary_function<difference_type,difference_type>
+    struct repeat_functor
     {
         difference_type repeats;
 
@@ -72,7 +72,7 @@ public:
 
     typedef typename thrust::iterator_difference<Iterator>::type difference_type;
 
-    struct tile_functor : public thrust::unary_function<difference_type,difference_type>
+    struct tile_functor
     {
         difference_type tile_size;
 
@@ -196,7 +196,7 @@ void print_range_in_string(Iterator first, Iterator last, std::string &s)
 
 // convert a linear index to a row index
 template <typename T>
-struct linear_index_to_row_index : public thrust::unary_function<T,T>
+struct linear_index_to_row_index
 {
     T C; // number of columns
 

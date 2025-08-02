@@ -13,56 +13,49 @@ Building DevDat requires the following software installed:
 * CMake `>= 3.15`
 * Cuda `>=10.1`
 
-# Building DevDat
+# Building and Installing DevDat
 
-The following sequence of commands builds DevDat.
-It assumes that your current working directory is the top-level directory
-of the freshly cloned repository:
+The recommended way to build and install DevDat is with an out-of-source build:
 
-```
-mkdir build
-cd build
-cmake -DCMAKE_BUILD_TYPE=Release ..
-cmake --build .
+```sh
+cmake -S . -B build -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=$HOME/local
+cmake --build build --target install
 ```
 
-The build process can be customized with the following CMake variables,
-which can be set by adding `-D<var>={ON, OFF}` to the `cmake` call:
+This will install DevDat to `$HOME/local` by default.  
+If you want to install to a different location, adjust the `CMAKE_INSTALL_PREFIX` accordingly.
 
-* `BUILD_TESTING`: Enable building of the test suite (default: `ON`)
+> **Note:** If you install to a custom location, set `CMAKE_PREFIX_PATH` when using DevDat in other projects:
+>
+> ```sh
+> cmake -S . -B build -DCMAKE_PREFIX_PATH=$HOME/local
+> ```
 
-# Testing DevDat
+# Building and Running the Example
 
-When built according to the above explanation (with `-DBUILD_TESTING=ON`),
-the C++ test suite of `DevDat` can be run using
-`ctest` from the build directory:
+To build the example, first ensure DevDat is installed as above. Then:
 
+```sh
+cmake -S examples -B examples/build -DCMAKE_BUILD_TYPE=Release -DCMAKE_PREFIX_PATH=$HOME/local
+cmake --build examples/build
 ```
+
+To run the example:
+
+```sh
+./examples/build/devdat_examples
+```
+
+# Running Tests
+
+If you enabled tests (`-DBUILD_TESTING=ON`):
+
+```sh
+cmake -S . -B build -DBUILD_TESTING=ON
+cmake --build build
 cd build
 ctest
 ```
-# Building the example
-
-The example directory demonstrates how the library can be integrated into a cmake project:
-
-```
-cd examples
-mkdir build
-cd build
-cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_PREFIX_PATH=~/DevDat/install ..   
-cmake --build .
-```
-
-Note that we have assumed here that the library was built beforehand locally by running the following commands in the top-level directory of the repository:
-
-```
-mkdir build
-cd build
-cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=./../install ..    
-make install -j9
-```
-
-
 # Documentation
 
 ToDo
